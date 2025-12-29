@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Signup | Namate 24</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for better form UX */
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+
+        .step-indicator.active {
+            background: linear-gradient(to right, #ec4899, #db2777);
+            color: white;
+        }
+
+        .step-indicator.completed {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .password-strength-bar {
+            height: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .company-logo-preview {
+            transition: all 0.3s ease;
+        }
+
+        .company-logo-preview:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animation for form steps */
+        .form-step {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Checkbox styling */
+        .custom-checkbox:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+            background-color: #ec4899;
+            border-color: #ec4899;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header (as provided) -->
+    <header class="w-full bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+            <!-- Logo -->
+            <div class="flex items-center gap-1">
+                <img src="https://image2url.com/images/1765179057005-967d0875-ac5d-4a43-b65f-a58abd9f651d.png"
+                    alt="Namate 24 Logo" class="w-10 h-10 object-contain">
+                <span class="text-pink-600 font-bold text-lg md:text-xl">Namate 24</span>
+            </div>
+
+            <!-- Right Section -->
+            <div class="flex items-center gap-6">
+                <!-- Dashboard Link -->
+                <a href="index.html" class="hidden md:block text-gray-700 hover:text-pink-600 font-medium">
+                    Dashboard
+                </a>
+
+                <!-- Edit Profile (Desktop Dropdown) -->
+                <div class="relative hidden md:block">
+                    <button id="editBtn" class="flex items-center text-gray-700 hover:text-pink-600 font-medium gap-1">
+                        Edit Profile <span class="text-sm">▼</span>
+                    </button>
+
+                    <!-- Dropdown -->
+                    <div id="editMenu"
+                        class="hidden absolute left-0 mt-2 w-60 bg-white shadow-lg rounded-xl border py-2 z-50">
+                        <a href="basic_details.html"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 rounded-md">
+                            Personal Details
+                        </a>
+
+                        <a href="photo.html"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600">
+                            Photo
+                        </a>
+                        <a href="Introduction_Video.html"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600">
+                            Introduction Video
+                        </a>
+                        <a href="subjects.html"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 rounded-md">
+                            Subjects
+                        </a>
+
+                        <a href="address.html"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 rounded-md">
+                            Address
+                        </a>
+                        <a href="education.html" class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Education
+                        </a>
+                        <a href="experience.html" class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Experience
+                        </a>
+                        <a href="teaching_details.html"
+                            class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Teaching Details
+                        </a>
+
+                        <a href="profile_description.html"
+                            class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Profile Description
+                        </a>
+                        <a href="phone.html" class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Phone
+                        </a>
+                        <a href="courses.html" class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Courses
+                        </a>
+                        <!-- Document Upload Link - Active -->
+                        <a href="documents.html" class="block px-4 py-2 text-sm bg-pink-50 text-pink-600 font-medium">
+                            <i class="fas fa-file-upload mr-2"></i>Documents Upload
+                        </a>
+                        <a href="view_profile.html"
+                            class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            View Profile
+                        </a>
+                        <a href="show_contact_setting.html"
+                            class="block px-4 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">
+                            Show Contact Setting
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile -->
+                <div class="relative">
+                    <img id="profileBtn"
+                        src="https://image2url.com/images/1765301188291-163cacc7-f581-4cdc-b39a-6a002a925411.jpg"
+                        alt="Profile" class="w-10 h-10 rounded-full object-cover cursor-pointer">
+
+                    <div id="profileMenu"
+                        class="hidden absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg overflow-hidden border">
+                        <a href="corporate_login.html"
+                            class="block text-center bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium text-sm py-2 hover:opacity-90">
+                            Corporate Login
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hamburger -->
+                <button id="menuBtn" class="flex flex-col justify-between w-6 h-5 focus:outline-none md:hidden">
+                    <span class="block h-0.5 w-full bg-gray-600 rounded"></span>
+                    <span class="block h-0.5 w-full bg-gray-600 rounded"></span>
+                    <span class="block h-0.5 w-full bg-gray-600 rounded"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-md border-t">
+            <ul class="flex flex-col p-4 space-y-4 text-gray-700 font-medium">
+                <li class="hover:text-pink-600">
+                    <a href="index.html">Dashboard</a>
+                </li>
+
+                <li>
+                    <button id="mobileEditBtn"
+                        class="w-full text-left flex justify-between hover:text-pink-600 font-medium">
+                        Edit Profile <span>▼</span>
+                    </button>
+
+                    <ul id="mobileEditMenu" class="hidden pl-4 mt-2 space-y-2">
+                        <li>
+                            <a href="basic_details.html"
+                                class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-pink-50 hover:text-pink-600">
+                                Personal Details
+                            </a>
+                        </li>
+
+                        <li><a href="photo.html" class="block px-3 py-2 hover:bg-pink-50 hover:text-pink-600">
+                                Photo
+                            </a>
+                        </li>
+                        <li><a href="introduction_video.html"
+                                class="block px-3 py-2 hover:bg-pink-50 hover:text-pink-600">
+                                Introduction Video
+                            </a>
+                        </li>
+                        <li><a href="subjects.html"
+                                class="block px-3 py-2 hover:bg-pink-50 hover:text-pink-600">Subjects</a></li>
+                        <li><a href="address.html"
+                                class="block px-3 py-2 hover:bg-pink-50 hover:text-pink-600">Address</a></li>
+                        <li><a href="education.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Education</a></li>
+                        <li><a href="experience.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Experience</a></li>
+                        <li><a href="teaching_details.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Teaching
+                                Details</a></li>
+                        <li><a href="profile_description.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Profile
+                                Description</a></li>
+                        <li><a href="phone.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Phone</a></li>
+                        <li><a href="courses.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Courses</a></li>
+                        <!-- Document Upload Link - Active for Mobile -->
+                        <li><a href="documents.html"
+                                class="block px-3 py-2 text-sm bg-pink-50 text-pink-600 font-medium">
+                                <i class="fas fa-file-upload mr-2"></i>Documents Upload
+                            </a></li>
+                        <li><a href="view_profile.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">View Profile</a>
+                        </li>
+                        <li><a href="show_contact_setting.html"
+                                class="block px-3 py-2 text-sm hover:bg-pink-50 hover:text-pink-600">Show Contact
+                                Setting</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Corporate Account Registration</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Register for full administrative access to manage teachers, students, courses, and all platform
+                features.
+            </p>
+        </div>
+
+        <!-- Registration Form Container -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <!-- Progress Indicator -->
+            <div class="px-8 py-6 border-b">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-semibold active">
+                            1
+                        </div>
+                        <div class="hidden md:block">
+                            <p class="text-sm text-gray-500">Step 1</p>
+                            <p class="font-medium text-gray-800">Company Details</p>
+                        </div>
+                    </div>
+
+                    <div class="h-1 flex-1 mx-4 bg-gray-200">
+                        <div class="h-full bg-gradient-to-r from-pink-500 to-pink-600" style="width: 33%"></div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-semibold border-2 border-gray-300 text-gray-400">
+                            2
+                        </div>
+                        <div class="hidden md:block">
+                            <p class="text-sm text-gray-500">Step 2</p>
+                            <p class="font-medium text-gray-800">Admin Details</p>
+                        </div>
+                    </div>
+
+                    <div class="h-1 flex-1 mx-4 bg-gray-200"></div>
+
+                    <div class="flex items-center space-x-4">
+                        <div
+                            class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-semibold border-2 border-gray-300 text-gray-400">
+                            3
+                        </div>
+                        <div class="hidden md:block">
+                            <p class="text-sm text-gray-500">Step 3</p>
+                            <p class="font-medium text-gray-800">Review & Submit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-8">
+                <!-- Step 1: Company Details -->
+                <div id="step1" class="form-step">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Company Information</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Company Name -->
+                        <div class="md:col-span-2">
+                            <label for="companyName" class="block text-sm font-medium text-gray-700 mb-2">
+                                Company/Organization Name <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="companyName"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="Enter your company or organization name">
+                        </div>
+
+                        <!-- Company Type -->
+                        <div>
+                            <label for="companyType" class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Type <span class="text-red-500">*</span>
+                            </label>
+                            <select id="companyType"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500">
+                                <option value="">Select company type</option>
+                                <option value="educational_institution">Educational Institution</option>
+                                <option value="coaching_center">Coaching Center</option>
+                                <option value="corporate_training">Corporate Training</option>
+                                <option value="ngo">NGO/Non-profit</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Industry -->
+                        <div>
+                            <label for="industry" class="block text-sm font-medium text-gray-700 mb-2">
+                                Industry <span class="text-red-500">*</span>
+                            </label>
+                            <select id="industry"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500">
+                                <option value="">Select industry</option>
+                                <option value="education">Education</option>
+                                <option value="technology">Technology</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Registration Number -->
+                        <div>
+                            <label for="registrationNumber" class="block text-sm font-medium text-gray-700 mb-2">
+                                Registration Number
+                            </label>
+                            <input type="text" id="registrationNumber"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="Company registration number">
+                        </div>
+
+                        <!-- Established Year -->
+                        <div>
+                            <label for="establishedYear" class="block text-sm font-medium text-gray-700 mb-2">
+                                Year Established
+                            </label>
+                            <input type="number" id="establishedYear" min="1900" max="2024"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="YYYY">
+                        </div>
+
+                        <!-- Website -->
+                        <div>
+                            <label for="website" class="block text-sm font-medium text-gray-700 mb-2">
+                                Website URL
+                            </label>
+                            <input type="url" id="website"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="https://example.com">
+                        </div>
+
+                        <!-- Company Email -->
+                        <div>
+                            <label for="companyEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Email <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" id="companyEmail"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="contact@company.com">
+                        </div>
+
+                        <!-- Company Phone -->
+                        <div>
+                            <label for="companyPhone" class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Phone <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" id="companyPhone"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="+91 12345 67890">
+                        </div>
+
+                        <!-- Company Address -->
+                        <div class="md:col-span-2">
+                            <label for="companyAddress" class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Address <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="companyAddress" rows="3"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="Full company address"></textarea>
+                        </div>
+
+                        <!-- Company Logo Upload -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Company Logo
+                            </label>
+                            <div class="flex items-center space-x-6">
+                                <div
+                                    class="company-logo-preview w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-gray-50 overflow-hidden">
+                                    <img id="logoPreview" src="" alt="" class="hidden w-full h-full object-cover">
+                                    <div id="logoPlaceholder" class="text-gray-400 text-center p-4">
+                                        <i class="fas fa-building text-2xl mb-2"></i>
+                                        <p class="text-xs">Logo Preview</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex-1">
+                                    <input type="file" id="companyLogo" accept="image/*" class="hidden">
+                                    <button type="button" id="uploadLogoBtn"
+                                        class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                        <i class="fas fa-upload mr-2"></i> Upload Logo
+                                    </button>
+                                    <p class="text-xs text-gray-500 mt-2">Recommended: Square logo, PNG/JPG format, max
+                                        2MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-10">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button id="nextToStep2"
+                            class="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition flex items-center">
+                            Next: Admin Details <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Admin Details -->
+                <div id="step2" class="form-step hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Administrator Details</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Admin Name -->
+                        <div>
+                            <label for="adminName" class="block text-sm font-medium text-gray-700 mb-2">
+                                Full Name <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="adminName"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="Your full name">
+                        </div>
+
+                        <!-- Designation -->
+                        <div>
+                            <label for="designation" class="block text-sm font-medium text-gray-700 mb-2">
+                                Designation <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="designation"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="Your position in company">
+                        </div>
+
+                        <!-- Admin Email -->
+                        <div>
+                            <label for="adminEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" id="adminEmail"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="your.email@company.com">
+                            <p class="text-xs text-gray-500 mt-1">This will be your login username</p>
+                        </div>
+
+                        <!-- Admin Phone -->
+                        <div>
+                            <label for="adminPhone" class="block text-sm font-medium text-gray-700 mb-2">
+                                Phone Number <span class="text-red-500">*</span>
+                            </label>
+                            <input type="tel" id="adminPhone"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                placeholder="+91 98765 43210">
+                        </div>
+
+                        <!-- Password -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                                Password <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="password"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                    placeholder="Create a strong password">
+                                <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-500">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+
+                            <!-- Password Strength Indicator -->
+                            <div class="mt-2">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-xs text-gray-500">Password strength</span>
+                                    <span id="passwordStrengthText" class="text-xs font-medium">Weak</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-1.5">
+                                    <div id="passwordStrengthBar"
+                                        class="password-strength-bar h-1.5 rounded-full bg-red-500" style="width: 20%">
+                                    </div>
+                                </div>
+                                <div id="passwordRules" class="text-xs text-gray-500 mt-2 space-y-1">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-times text-red-400 mr-1" id="lengthCheck"></i>
+                                        <span>At least 8 characters</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-times text-red-400 mr-1" id="uppercaseCheck"></i>
+                                        <span>At least one uppercase letter</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-times text-red-400 mr-1" id="numberCheck"></i>
+                                        <span>At least one number</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-times text-red-400 mr-1" id="specialCheck"></i>
+                                        <span>At least one special character</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div>
+                            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                                Confirm Password <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="confirmPassword"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none focus:border-pink-500"
+                                    placeholder="Confirm your password">
+                                <button type="button" id="toggleConfirmPassword"
+                                    class="absolute right-3 top-3 text-gray-500">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="passwordMatch" class="hidden text-xs text-red-500 mt-1">
+                                <i class="fas fa-exclamation-circle mr-1"></i> Passwords do not match
+                            </div>
+                            <div id="passwordMatchSuccess" class="hidden text-xs text-green-500 mt-1">
+                                <i class="fas fa-check-circle mr-1"></i> Passwords match
+                            </div>
+                        </div>
+
+                        <!-- Access Level -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Access Level <span class="text-red-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <label
+                                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-pink-50">
+                                    <input type="radio" name="accessLevel" value="full_admin"
+                                        class="mr-3 custom-checkbox" checked>
+                                    <div>
+                                        <p class="font-medium text-gray-800">Full Administrator</p>
+                                        <p class="text-sm text-gray-600">Complete access to all features</p>
+                                    </div>
+                                </label>
+
+                                <label
+                                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-pink-50">
+                                    <input type="radio" name="accessLevel" value="teacher_manager"
+                                        class="mr-3 custom-checkbox">
+                                    <div>
+                                        <p class="font-medium text-gray-800">Teacher Manager</p>
+                                        <p class="text-sm text-gray-600">Manage teachers and courses only</p>
+                                    </div>
+                                </label>
+
+                                <label
+                                    class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-pink-50">
+                                    <input type="radio" name="accessLevel" value="student_manager"
+                                        class="mr-3 custom-checkbox">
+                                    <div>
+                                        <p class="font-medium text-gray-800">Student Manager</p>
+                                        <p class="text-sm text-gray-600">Manage students and enrollments only</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-10">
+                        <button id="backToStep1"
+                            class="bg-white text-gray-700 font-medium py-3 px-8 rounded-lg border border-gray-300 hover:bg-gray-50 transition flex items-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Back
+                        </button>
+                        <button id="nextToStep3"
+                            class="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition flex items-center">
+                            Next: Review & Submit <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Review & Submit -->
+                <div id="step3" class="form-step hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Review & Submit</h2>
+
+                    <!-- Summary Cards -->
+                    <div class="space-y-6">
+                        <!-- Company Summary -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="font-bold text-gray-800 text-lg">Company Details</h3>
+                                <button type="button" id="editStep1" class="text-pink-600 font-medium text-sm">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">Company Name</p>
+                                    <p id="reviewCompanyName" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Company Type</p>
+                                    <p id="reviewCompanyType" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p id="reviewCompanyEmail" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Phone</p>
+                                    <p id="reviewCompanyPhone" class="font-medium">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Admin Summary -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="font-bold text-gray-800 text-lg">Administrator Details</h3>
+                                <button type="button" id="editStep2" class="text-pink-600 font-medium text-sm">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-500">Full Name</p>
+                                    <p id="reviewAdminName" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Designation</p>
+                                    <p id="reviewDesignation" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p id="reviewAdminEmail" class="font-medium">-</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Access Level</p>
+                                    <p id="reviewAccessLevel" class="font-medium">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h3 class="font-bold text-gray-800 text-lg mb-4">Terms & Conditions</h3>
+
+                            <div class="space-y-4 max-h-60 overflow-y-auto p-4 bg-white rounded-lg border">
+                                <p class="text-sm text-gray-700">
+                                    By creating a corporate account on Namate 24, you agree to the following terms and
+                                    conditions:
+                                </p>
+                                <ul class="text-sm text-gray-700 space-y-2 list-disc pl-5">
+                                    <li>You are authorized to represent the company/organization you are registering
+                                        for.</li>
+                                    <li>You will maintain the confidentiality of your login credentials and are
+                                        responsible for all activities under your account.</li>
+                                    <li>You agree to use the platform in compliance with all applicable laws and
+                                        regulations.</li>
+                                    <li>You will not share your administrative access with unauthorized individuals.
+                                    </li>
+                                    <li>Namate 24 reserves the right to suspend or terminate accounts that violate
+                                        platform policies.</li>
+                                    <li>You consent to receive important notifications and updates via email.</li>
+                                    <li>All data provided during registration must be accurate and up-to-date.</li>
+                                </ul>
+                                <p class="text-sm text-gray-700 mt-4">
+                                    For the complete Terms of Service and Privacy Policy, please visit our website.
+                                </p>
+                            </div>
+
+                            <div class="flex items-start mt-4">
+                                <input type="checkbox" id="agreeTerms" class="mt-1 mr-3 custom-checkbox">
+                                <label for="agreeTerms" class="text-sm text-gray-700">
+                                    I agree to the Terms & Conditions and Privacy Policy of Namate 24.
+                                    I confirm that I have the authority to create this corporate account.
+                                </label>
+                            </div>
+
+                            <div class="flex items-start mt-4">
+                                <input type="checkbox" id="marketingEmails" class="mt-1 mr-3 custom-checkbox" checked>
+                                <label for="marketingEmails" class="text-sm text-gray-700">
+                                    I would like to receive updates, news, and promotional offers from Namate 24.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-between mt-10">
+                        <button id="backToStep2"
+                            class="bg-white text-gray-700 font-medium py-3 px-8 rounded-lg border border-gray-300 hover:bg-gray-50 transition flex items-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Back
+                        </button>
+                        <button id="submitRegistration"
+                            class="bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i> Create Corporate Account
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden text-center py-12">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Registration Successful!</h2>
+                    <p class="text-gray-600 max-w-lg mx-auto mb-8">
+                        Your corporate account has been created successfully. You will receive a confirmation email with
+                        login instructions within 24 hours.
+                    </p>
+                    <div class="space-y-4">
+                        <a href="corporate_dashboard.html"
+                            class="inline-block bg-gradient-to-r from-pink-500 to-pink-600 text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition">
+                            Go to Dashboard
+                        </a>
+                        <p class="text-sm text-gray-500">
+                            Need help? <a href="mailto:support@namate24.com"
+                                class="text-pink-600 hover:underline">Contact our support team</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Already have an account? -->
+            <div class="px-8 py-6 border-t bg-gray-50 text-center">
+                <p class="text-gray-700">
+                    Already have a corporate account?
+                    <a href="corporate_login.html" class="text-pink-600 font-medium hover:underline">Sign in here</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Note for Regular Users -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl border border-pink-200">
+            <div class="flex items-start">
+                <i class="fas fa-info-circle text-pink-500 text-xl mt-1 mr-3"></i>
+                <div>
+                    <h3 class="font-medium text-gray-800 mb-1">Looking for teacher or student registration?</h3>
+                    <p class="text-gray-700 text-sm">
+                        This is a corporate account registration for administrators and clients.
+                        If you are a teacher or student, please use the appropriate registration forms:
+                        <a href="teacher_signup.html" class="text-pink-600 font-medium hover:underline">Teacher
+                            Signup</a> or
+                        <a href="student_signup.html" class="text-pink-600 font-medium hover:underline">Student
+                            Signup</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center gap-1 mb-4 md:mb-0">
+                    <img src="https://image2url.com/images/1765179057005-967d0875-ac5d-4a43-b65f-a58abd9f651d.png"
+                        alt="Namate 24 Logo" class="w-8 h-8 object-contain">
+                    <span class="text-pink-600 font-bold text-lg">Namate 24</span>
+                </div>
+
+                <div class="text-gray-500 text-sm text-center md:text-right">
+                    <p class="mb-2">Corporate Registration Portal</p>
+                    <p>&copy; 2023 Namate 24. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Header functionality
+            const editBtn = document.getElementById('editBtn');
+            const editMenu = document.getElementById('editMenu');
+            const profileBtn = document.getElementById('profileBtn');
+            const profileMenu = document.getElementById('profileMenu');
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileEditBtn = document.getElementById('mobileEditBtn');
+            const mobileEditMenu = document.getElementById('mobileEditMenu');
+
+            // Desktop dropdown toggle
+            if (editBtn && editMenu) {
+                editBtn.addEventListener('click', function () {
+                    editMenu.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!editBtn.contains(event.target) && !editMenu.contains(event.target)) {
+                        editMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Profile dropdown toggle
+            if (profileBtn && profileMenu) {
+                profileBtn.addEventListener('click', function () {
+                    profileMenu.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+                        profileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Mobile edit menu toggle
+            if (mobileEditBtn && mobileEditMenu) {
+                mobileEditBtn.addEventListener('click', function () {
+                    mobileEditMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Form functionality
+            let currentStep = 1;
+            const totalSteps = 3;
+
+            // Navigation between steps
+            document.getElementById('nextToStep2').addEventListener('click', function () {
+                if (validateStep1()) {
+                    updateProgress(2);
+                    showStep(2);
+                }
+            });
+
+            document.getElementById('backToStep1').addEventListener('click', function () {
+                updateProgress(1);
+                showStep(1);
+            });
+
+            document.getElementById('nextToStep3').addEventListener('click', function () {
+                if (validateStep2()) {
+                    updateProgress(3);
+                    updateReviewSection();
+                    showStep(3);
+                }
+            });
+
+            document.getElementById('backToStep2').addEventListener('click', function () {
+                updateProgress(2);
+                showStep(2);
+            });
+
+            // Edit buttons on review step
+            document.getElementById('editStep1').addEventListener('click', function () {
+                updateProgress(1);
+                showStep(1);
+            });
+
+            document.getElementById('editStep2').addEventListener('click', function () {
+                updateProgress(2);
+                showStep(2);
+            });
+
+            // Form submission
+            document.getElementById('submitRegistration').addEventListener('click', function () {
+                if (validateStep3()) {
+                    submitRegistration();
+                }
+            });
+
+            // Logo upload functionality
+            document.getElementById('uploadLogoBtn').addEventListener('click', function () {
+                document.getElementById('companyLogo').click();
+            });
+
+            document.getElementById('companyLogo').addEventListener('change', function (e) {
+                if (e.target.files && e.target.files[0]) {
+                    const file = e.target.files[0];
+
+                    // Check file size (max 2MB)
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('File size exceeds 2MB limit. Please choose a smaller file.');
+                        return;
+                    }
+
+                    // Check file type
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please upload a JPG or PNG image.');
+                        return;
+                    }
+
+                    // Preview image
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        document.getElementById('logoPreview').src = event.target.result;
+                        document.getElementById('logoPreview').classList.remove('hidden');
+                        document.getElementById('logoPlaceholder').classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Password visibility toggle
+            document.getElementById('togglePassword').addEventListener('click', function () {
+                const passwordInput = document.getElementById('password');
+                const icon = this.querySelector('i');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                const icon = this.querySelector('i');
+
+                if (confirmPasswordInput.type === 'password') {
+                    confirmPasswordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    confirmPasswordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+
+            // Password strength checker
+            document.getElementById('password').addEventListener('input', function () {
+                checkPasswordStrength(this.value);
+                checkPasswordMatch();
+            });
+
+            document.getElementById('confirmPassword').addEventListener('input', checkPasswordMatch);
+
+            // Function to update progress indicator
+            function updateProgress(step) {
+                currentStep = step;
+
+                // Update step indicators
+                document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                    indicator.classList.remove('active', 'completed');
+
+                    if (index + 1 < step) {
+                        indicator.classList.add('completed');
+                    } else if (index + 1 === step) {
+                        indicator.classList.add('active');
+                    }
+                });
+
+                // Update progress bar
+                const progressBar = document.querySelector('.bg-gradient-to-r.from-pink-500.to-pink-600');
+                if (progressBar) {
+                    const progressPercentage = ((step - 1) / (totalSteps - 1)) * 100;
+                    progressBar.style.width = progressPercentage + '%';
+                }
+            }
+
+            // Function to show specific step
+            function showStep(step) {
+                // Hide all steps
+                document.querySelectorAll('.form-step').forEach(stepEl => {
+                    stepEl.classList.add('hidden');
+                });
+
+                // Show current step
+                document.getElementById(`step${step}`).classList.remove('hidden');
+            }
+
+            // Function to validate step 1
+            function validateStep1() {
+                const requiredFields = [
+                    'companyName',
+                    'companyType',
+                    'industry',
+                    'companyEmail',
+                    'companyPhone',
+                    'companyAddress'
+                ];
+
+                let isValid = true;
+
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500');
+                        isValid = false;
+
+                        // Add error message
+                        if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('text-red-500')) {
+                            const error = document.createElement('p');
+                            error.className = 'text-red-500 text-xs mt-1';
+                            error.textContent = 'This field is required';
+                            field.parentNode.appendChild(error);
+                        }
+                    } else {
+                        field.classList.remove('border-red-500');
+
+                        // Remove error message if exists
+                        const error = field.parentNode.querySelector('.text-red-500.text-xs.mt-1');
+                        if (error) {
+                            error.remove();
+                        }
+
+                        // Email validation
+                        if (fieldId === 'companyEmail' && !isValidEmail(field.value)) {
+                            field.classList.add('border-red-500');
+                            const error = document.createElement('p');
+                            error.className = 'text-red-500 text-xs mt-1';
+                            error.textContent = 'Please enter a valid email address';
+                            field.parentNode.appendChild(error);
+                            isValid = false;
+                        }
+                    }
+                });
+
+                if (!isValid) {
+                    alert('Please fill in all required fields correctly.');
+                }
+
+                return isValid;
+            }
+
+            // Function to validate step 2
+            function validateStep2() {
+                const requiredFields = [
+                    'adminName',
+                    'designation',
+                    'adminEmail',
+                    'adminPhone',
+                    'password',
+                    'confirmPassword'
+                ];
+
+                let isValid = true;
+
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500');
+                        isValid = false;
+
+                        // Add error message
+                        if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('text-red-500')) {
+                            const error = document.createElement('p');
+                            error.className = 'text-red-500 text-xs mt-1';
+                            error.textContent = 'This field is required';
+                            field.parentNode.appendChild(error);
+                        }
+                    } else {
+                        field.classList.remove('border-red-500');
+
+                        // Remove error message if exists
+                        const error = field.parentNode.querySelector('.text-red-500.text-xs.mt-1');
+                        if (error) {
+                            error.remove();
+                        }
+
+                        // Email validation
+                        if (fieldId === 'adminEmail' && !isValidEmail(field.value)) {
+                            field.classList.add('border-red-500');
+                            const error = document.createElement('p');
+                            error.className = 'text-red-500 text-xs mt-1';
+                            error.textContent = 'Please enter a valid email address';
+                            field.parentNode.appendChild(error);
+                            isValid = false;
+                        }
+                    }
+                });
+
+                // Check password strength
+                const password = document.getElementById('password').value;
+                const passwordStrength = calculatePasswordStrength(password);
+
+                if (passwordStrength < 3) {
+                    alert('Please create a stronger password.');
+                    isValid = false;
+                }
+
+                // Check password match
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (password !== confirmPassword) {
+                    document.getElementById('passwordMatch').classList.remove('hidden');
+                    document.getElementById('passwordMatchSuccess').classList.add('hidden');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    alert('Please fill in all required fields correctly.');
+                }
+
+                return isValid;
+            }
+
+            // Function to validate step 3
+            function validateStep3() {
+                const agreeTerms = document.getElementById('agreeTerms');
+
+                if (!agreeTerms.checked) {
+                    alert('You must agree to the Terms & Conditions to proceed.');
+                    agreeTerms.parentElement.classList.add('text-red-500');
+                    return false;
+                }
+
+                agreeTerms.parentElement.classList.remove('text-red-500');
+                return true;
+            }
+
+            // Function to update review section
+            function updateReviewSection() {
+                // Company details
+                document.getElementById('reviewCompanyName').textContent =
+                    document.getElementById('companyName').value || '-';
+
+                const companyType = document.getElementById('companyType');
+                document.getElementById('reviewCompanyType').textContent =
+                    companyType.options[companyType.selectedIndex].text || '-';
+
+                document.getElementById('reviewCompanyEmail').textContent =
+                    document.getElementById('companyEmail').value || '-';
+
+                document.getElementById('reviewCompanyPhone').textContent =
+                    document.getElementById('companyPhone').value || '-';
+
+                // Admin details
+                document.getElementById('reviewAdminName').textContent =
+                    document.getElementById('adminName').value || '-';
+
+                document.getElementById('reviewDesignation').textContent =
+                    document.getElementById('designation').value || '-';
+
+                document.getElementById('reviewAdminEmail').textContent =
+                    document.getElementById('adminEmail').value || '-';
+
+                const accessLevel = document.querySelector('input[name="accessLevel"]:checked');
+                document.getElementById('reviewAccessLevel').textContent =
+                    accessLevel ? accessLevel.nextElementSibling.querySelector('p').textContent : '-';
+            }
+
+            // Function to submit registration
+            function submitRegistration() {
+                // Show loading state
+                const submitBtn = document.getElementById('submitRegistration');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating Account...';
+                submitBtn.disabled = true;
+
+                // Simulate API call
+                setTimeout(function () {
+                    // Hide form and show success message
+                    document.querySelector('.form-step').classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }
+
+            // Function to check password strength
+            function checkPasswordStrength(password) {
+                let strength = 0;
+
+                // Check length
+                const lengthCheck = document.getElementById('lengthCheck');
+                if (password.length >= 8) {
+                    strength++;
+                    lengthCheck.classList.remove('fa-times', 'text-red-400');
+                    lengthCheck.classList.add('fa-check', 'text-green-500');
+                } else {
+                    lengthCheck.classList.remove('fa-check', 'text-green-500');
+                    lengthCheck.classList.add('fa-times', 'text-red-400');
+                }
+
+                // Check uppercase
+                const uppercaseCheck = document.getElementById('uppercaseCheck');
+                if (/[A-Z]/.test(password)) {
+                    strength++;
+                    uppercaseCheck.classList.remove('fa-times', 'text-red-400');
+                    uppercaseCheck.classList.add('fa-check', 'text-green-500');
+                } else {
+                    uppercaseCheck.classList.remove('fa-check', 'text-green-500');
+                    uppercaseCheck.classList.add('fa-times', 'text-red-400');
+                }
+
+                // Check numbers
+                const numberCheck = document.getElementById('numberCheck');
+                if (/[0-9]/.test(password)) {
+                    strength++;
+                    numberCheck.classList.remove('fa-times', 'text-red-400');
+                    numberCheck.classList.add('fa-check', 'text-green-500');
+                } else {
+                    numberCheck.classList.remove('fa-check', 'text-green-500');
+                    numberCheck.classList.add('fa-times', 'text-red-400');
+                }
+
+                // Check special characters
+                const specialCheck = document.getElementById('specialCheck');
+                if (/[^A-Za-z0-9]/.test(password)) {
+                    strength++;
+                    specialCheck.classList.remove('fa-times', 'text-red-400');
+                    specialCheck.classList.add('fa-check', 'text-green-500');
+                } else {
+                    specialCheck.classList.remove('fa-check', 'text-green-500');
+                    specialCheck.classList.add('fa-times', 'text-red-400');
+                }
+
+                // Update strength bar and text
+                const strengthBar = document.getElementById('passwordStrengthBar');
+                const strengthText = document.getElementById('passwordStrengthText');
+
+                let barWidth = 0;
+                let barColor = '';
+                let text = '';
+
+                switch (strength) {
+                    case 0:
+                    case 1:
+                        barWidth = 25;
+                        barColor = 'bg-red-500';
+                        text = 'Weak';
+                        break;
+                    case 2:
+                        barWidth = 50;
+                        barColor = 'bg-yellow-500';
+                        text = 'Fair';
+                        break;
+                    case 3:
+                        barWidth = 75;
+                        barColor = 'bg-blue-500';
+                        text = 'Good';
+                        break;
+                    case 4:
+                        barWidth = 100;
+                        barColor = 'bg-green-500';
+                        text = 'Strong';
+                        break;
+                }
+
+                strengthBar.style.width = barWidth + '%';
+                strengthBar.className = `password-strength-bar h-1.5 rounded-full ${barColor}`;
+                strengthText.textContent = text;
+                strengthText.className = strength === 0 || strength === 1 ? 'text-xs font-medium text-red-500' :
+                    strength === 2 ? 'text-xs font-medium text-yellow-500' :
+                        strength === 3 ? 'text-xs font-medium text-blue-500' :
+                            'text-xs font-medium text-green-500';
+
+                return strength;
+            }
+
+            // Function to calculate password strength (0-4)
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+                return strength;
+            }
+
+            // Function to check if passwords match
+            function checkPasswordMatch() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const matchError = document.getElementById('passwordMatch');
+                const matchSuccess = document.getElementById('passwordMatchSuccess');
+
+                if (confirmPassword === '') {
+                    matchError.classList.add('hidden');
+                    matchSuccess.classList.add('hidden');
+                    return;
+                }
+
+                if (password === confirmPassword) {
+                    matchError.classList.add('hidden');
+                    matchSuccess.classList.remove('hidden');
+                } else {
+                    matchError.classList.remove('hidden');
+                    matchSuccess.classList.add('hidden');
+                }
+            }
+
+            // Function to validate email
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+</body>
+
+</html>
